@@ -41,7 +41,7 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[@]",	spiral},    /* first entry is default */
 	{ "[M]",	monocle },
-	{ "><>",	NULL },    /* no layout function means floating behavior */
+	{ NULL,	NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */
@@ -71,23 +71,20 @@ static Key keys[] = {
 	{ ALTKEY|ShiftMask,		XK_h,		incnmaster,	{.i = +1 } },
 	{ ALTKEY|ShiftMask,		XK_l,		incnmaster,	{.i = -1 } },
 	{ ALTKEY,			XK_v,		togglebar,	{0} },
-	{ ALTKEY,			XK_b,		setlayout,	{.v = &layouts[0]} },
-	{ ALTKEY,			XK_n,		setlayout,	{.v = &layouts[1]} },
-	{ ALTKEY,			XK_m,		setlayout,	{.v = &layouts[2]} },
-	{ ALTKEY,			XK_Tab,		view,		{0} },
-	{ ALTKEY,                       XK_space,       focusmon,         {.i = +1 } },
+	{ ALTKEY,			XK_Tab,		cyclelayout,	{.i = +1 } },
+	{ ALTKEY,                       XK_space,       focusmon,       {.i = +1 } },
 	{ ALTKEY|ShiftMask,             XK_space,       tagmon,         {.i = +1 } },
 	{ ALTKEY,                       XK_t,		view,		{.ui = ~0 } },
 	{ ALTKEY|ShiftMask,		XK_t,		tag,		{.ui = ~0 } },
 	{ SUPERKEY,			XK_F2,		quit,		{0} },
-	TAGKEYS(			XK_q,			0)
-	TAGKEYS(			XK_w,			1)
-	TAGKEYS(			XK_e,			2)
-	TAGKEYS(			XK_r,			3)
-	TAGKEYS(			XK_u,			4)
-	TAGKEYS(			XK_i,			5)
-	TAGKEYS(			XK_o,			6)
-	TAGKEYS(			XK_p,			7)
+	TAGKEYS(			XK_q,				0)
+	TAGKEYS(			XK_w,				1)
+	TAGKEYS(			XK_e,				2)
+	TAGKEYS(			XK_r,				3)
+	TAGKEYS(			XK_u,				4)
+	TAGKEYS(			XK_i,				5)
+	TAGKEYS(			XK_o,				6)
+	TAGKEYS(			XK_p,				7)
 };
 
 /* button definitions */
