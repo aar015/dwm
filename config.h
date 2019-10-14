@@ -32,9 +32,10 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.5;  /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static int attachbelow = 1;    /* 1 means attach below */
 
 #include "fibonacci.c"
 static const Layout layouts[] = {
@@ -63,29 +64,30 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[] = { "st", NULL };
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ ALTKEY,			XK_x,		killclient,	{0} },
-	{ ALTKEY,                       XK_j,		focusstack,	{.i = +1 } },
-	{ ALTKEY,                       XK_k,		focusstack,	{.i = -1 } },
-	{ ALTKEY,                       XK_h,		setmfact,	{.f = -0.01} },
-	{ ALTKEY,                       XK_l,		setmfact,	{.f = +0.01} },
-	{ ALTKEY|ShiftMask,		XK_h,		incnmaster,	{.i = +1 } },
-	{ ALTKEY|ShiftMask,		XK_l,		incnmaster,	{.i = -1 } },
-	{ ALTKEY,			XK_v,		togglebar,	{0} },
-	{ ALTKEY,			XK_Tab,		cyclelayout,	{.i = +1 } },
-	{ ALTKEY,                       XK_space,       focusmon,       {.i = +1 } },
-	{ ALTKEY|ShiftMask,             XK_space,       tagmon,         {.i = +1 } },
-	{ ALTKEY,                       XK_t,		view,		{.ui = ~0 } },
-	{ ALTKEY|ShiftMask,		XK_t,		tag,		{.ui = ~0 } },
-	{ SUPERKEY,			XK_F2,		quit,		{0} },
-	TAGKEYS(			XK_q,				0)
-	TAGKEYS(			XK_w,				1)
-	TAGKEYS(			XK_e,				2)
-	TAGKEYS(			XK_r,				3)
-	TAGKEYS(			XK_u,				4)
-	TAGKEYS(			XK_i,				5)
-	TAGKEYS(			XK_o,				6)
-	TAGKEYS(			XK_p,				7)
+	/* modifier                     key        	function        	argument */
+	{ ALTKEY,			XK_x,		killclient,		{0}		},
+	{ ALTKEY,                       XK_j,		focusstack,		{.i = +1}	},
+	{ ALTKEY,                       XK_k,		focusstack,		{.i = -1} 	},
+	{ ALTKEY,                       XK_h,		setmfact,		{.f = -0.01}	},
+	{ ALTKEY,                       XK_l,		setmfact,		{.f = +0.01} 	},
+	{ ALTKEY|ShiftMask,		XK_h,		incnmaster,		{.i = +1} 	},
+	{ ALTKEY|ShiftMask,		XK_l,		incnmaster,		{.i = -1}	},
+	{ ALTKEY,			XK_v,		togglebar,		{0} 		},
+	{ ALTKEY,			XK_Tab,		cyclelayout,		{.i = +1} 	},
+	{ ALTKEY,                       XK_space,       focusmon,       	{.i = +1} 	},
+	{ ALTKEY|ShiftMask,             XK_space,       tagmon,         	{.i = +1} 	},
+	{ ALTKEY,                       XK_t,		view,			{.ui = ~0} 	},
+	{ ALTKEY|ShiftMask,		XK_t,		tag,			{.ui = ~0} 	},
+	{ ALTKEY|ShiftMask,		XK_Tab,		toggleAttachBelow, 	{0}		},
+	{ SUPERKEY,			XK_F2,		quit,			{0} 		},
+	TAGKEYS(			XK_q,					0)
+	TAGKEYS(			XK_w,					1)
+	TAGKEYS(			XK_e,					2)
+	TAGKEYS(			XK_r,					3)
+	TAGKEYS(			XK_u,					4)
+	TAGKEYS(			XK_i,					5)
+	TAGKEYS(			XK_o,					6)
+	TAGKEYS(			XK_p,					7)
 };
 
 /* button definitions */
